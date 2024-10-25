@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4">Create a New Trip</h2>
+        <form method="POST">
+            {{ form.csrf_token }}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div id="map" style="height: 300px" class="mb-3"></div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">{{ form.origin.label }}</label>
+                        {{ form.origin(class="form-control") }}
+                        {{ form.origin_lat(type="hidden") }}
+                        {{ form.origin_lon(type="hidden") }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">{{ form.destination.label }}</label>
+                        {{ form.destination(class="form-control") }}
+                        {{ form.dest_lat(type="hidden") }}
+                        {{ form.dest_lon(type="hidden") }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">{{ form.departure_date.label }}</label>
+                        {{ form.departure_date(class="form-control", type="datetime-local") }}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">{{ form.seats_available.label }}</label>
+                            {{ form.seats_available(class="form-control") }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">{{ form.price.label }}</label>
+                            {{ form.price(class="form-control") }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Trip</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+{% endblock %}

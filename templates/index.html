@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 mb-3">Welcome to ArgentinaCarpooling</h1>
+        <p class="lead">Connect with drivers and passengers for shared rides across Argentina</p>
+        {% if not current_user.is_authenticated %}
+        <div class="mt-4">
+            <a href="{{ url_for('register') }}" class="btn btn-primary me-2">Register Now</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-primary">Login</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Find Your Ride</h3>
+                    <form id="search-form" action="{{ url_for('trips') }}" method="GET">
+                        <div class="row g-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Origin</label>
+                                <input type="text" class="form-control" id="origin" name="origin" placeholder="From where?" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Destination</label>
+                                <input type="text" class="form-control" id="destination" name="destination" placeholder="Where to?" required>
+                            </div>
+                            <div class="col-md-8 mb-3">
+                                <label class="form-label">Date</label>
+                                <input type="date" class="form-control" name="date" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Passengers</label>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-outline-secondary" onclick="decrementPassengers(this)">
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                    <input type="number" class="form-control text-center" name="passengers" value="1" min="1" max="8" readonly>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="incrementPassengers(this)">
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div>
+                                <small class="form-text passenger-count">1 passenger</small>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Search Trips</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Find a Ride</h3>
+                    <p class="card-text">Search for available rides to your destination and book your seat.</p>
+                    <a href="{{ url_for('trips') }}" class="btn btn-primary">Search Trips</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Offer a Ride</h3>
+                    <p class="card-text">Share your journey and help others while splitting costs.</p>
+                    <a href="{{ url_for('create_trip') }}" class="btn btn-primary">Create Trip</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Track Your Trips</h3>
+                    <p class="card-text">Manage your bookings and offered trips in one place.</p>
+                    <a href="{{ url_for('profile') }}" class="btn btn-primary">View Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/counter.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">My Profile</h2>
+    
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">My Trips as Driver</h3>
+                    {% for trip in trips_created %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ trip.origin }} → {{ trip.destination }}</h5>
+                            <p class="mb-1">Date: {{ trip.departure_date.strftime('%Y-%m-%d %H:%M') }}</p>
+                            <p class="mb-1">Available Seats: {{ trip.seats_available }}</p>
+                            <p class="mb-1">Price: ${{ "%.2f"|format(trip.price) }}</p>
+                            <p class="mb-0">Bookings: {{ trip.bookings|length }}</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p>No trips created yet</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">My Bookings as Passenger</h3>
+                    {% for booking in bookings %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ booking.trip.origin }} → {{ booking.trip.destination }}</h5>
+                            <p class="mb-1">Date: {{ booking.trip.departure_date.strftime('%Y-%m-%d %H:%M') }}</p>
+                            <p class="mb-1">Driver: {{ booking.trip.driver.username }}</p>
+                            <p class="mb-1">Seats: {{ booking.seats }}</p>
+                            <p class="mb-0">Status: <span class="badge bg-{{ 'success' if booking.status == 'approved' else 'warning' if booking.status == 'pending' else 'danger' }}">{{ booking.status }}</span></p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <p>No bookings made yet</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

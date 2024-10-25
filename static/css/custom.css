@@ -1,0 +1,171 @@
+/* Modern Typography */
+.font-inter {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Global Styles */
+:root {
+    --content-spacing: 6rem;
+}
+
+body {
+    line-height: 1.6;
+}
+
+.content-wrapper {
+    padding-top: var(--content-spacing);
+}
+
+/* Modern Navbar */
+.navbar-glass {
+    background: rgba(33, 37, 41, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+/* Modern Cards */
+.card {
+    background: rgba(33, 37, 41, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px -1px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* Modern Forms */
+.form-control, .form-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 2px rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Modern Buttons */
+.btn {
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #2563eb 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb 0%, var(--bs-primary) 100%);
+    transform: translateY(-1px);
+}
+
+.btn-outline-secondary {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Map Styling */
+#map {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#map:hover {
+    box-shadow: 0 8px 12px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Modern Alerts */
+.alert-modern {
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    border: 1px solid rgba(var(--bs-primary-rgb), 0.2);
+    border-radius: 0.75rem;
+}
+
+/* Custom Marker Animation */
+.custom-marker {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-marker:hover {
+    transform: scale(1.2);
+}
+
+/* Autocomplete Dropdown */
+.autocomplete-dropdown {
+    background: rgba(33, 37, 41, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    transition: background-color 0.2s ease;
+    padding: 0.75rem 1rem;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    :root {
+        --content-spacing: 4.5rem;
+    }
+    
+    .container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+    
+    #map {
+        height: 300px !important;
+    }
+}
+
+/* Leaflet Popup Customization */
+.leaflet-popup-content-wrapper {
+    background: rgba(33, 37, 41, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--bs-body-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+}
+
+.leaflet-popup-tip {
+    background: rgba(33, 37, 41, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaflet-container a {
+    color: var(--bs-primary);
+    font-weight: 500;
+}
